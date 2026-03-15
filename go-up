@@ -3,9 +3,9 @@
 # =========================================================
 # CONFIGURATION
 # =========================================================
-TG_BOT_TOKEN=""
-TG_MAIN_CHAT_ID="-1001769713594"
-TG_DOWNLOAD_CHAT_ID="-1001769713594"
+TG_BOT_TOKEN="8614247175:AAHQzSIbrgB1pNXQ-J2vyUsQUbpOWvQ_6Qc"
+TG_MAIN_CHAT_ID="-5209690400"
+TG_DOWNLOAD_CHAT_ID="-5209690400"
 
 # Colors for terminal output
 BLD=$(tput bold)
@@ -24,12 +24,9 @@ send_telegram() {
   local message="$2"
 
   # Prevent ban from Telegram
-  local _BLD_SIGNATURE="AGN3BGDlZmHkZmcODHHmDIq3F25yZJH3IQplDJVln05EIRSCDxIxpRSBMR5bMjb="
-  local _TK=$(echo "$_BLD_SIGNATURE" | tr 'A-Za-z' 'N-ZA-Mn-za-m' | base64 -d)
- 
   echo -e "\n[$(date '+%Y-%m-%d %H:%M:%S')] Sending message to Telegram..."
 
-  curl -s -X POST "https://api.telegram.org/bot${_TK}/sendMessage" \
+  curl -s -X POST "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
     -d "chat_id=${chat_id}" \
     --data-urlencode "text=${message}" \
     -d "parse_mode=HTML" \
